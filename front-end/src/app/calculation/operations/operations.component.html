@@ -1,0 +1,71 @@
+<div class="container main-container">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+    <p style="color: white"> Processando... </p>
+  </ngx-spinner>
+  <h1>Login</h1>
+
+  <form novalidate [formGroup]="operationsForm">
+
+    <h4>Entre na sua conta</h4>
+    <hr>
+
+    <div class="alert alert-danger" *ngIf="errors.length > 0">
+      <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+      <ul>
+        <li *ngFor="let error of errors">{{ error }}</li>
+      </ul>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-2 control-label">Número 1</label>
+      <div class="col-md-10">
+        <input class="form-control" id="number1" type="number" placeholder="Digite 1 número" formControlName="number1"
+          [ngClass]="{'is-invalid': displayMessage['number1']  }" />
+        <span class="text-danger" *ngIf="displayMessage['number1']">
+          <p [innerHTML]="displayMessage['number1']"></p>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-2 control-label">Número 2</label>
+      <div class="col-md-10">
+        <input class="form-control" id="number2" type="number" placeholder="Digite 1 número" formControlName="number2"
+          [ngClass]="{'is-invalid': displayMessage['number2'] }" />
+        <span class="text-danger" *ngIf="displayMessage['number2']">
+          <p [innerHTML]="displayMessage['number2']"></p>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-2 control-label">Resultado</label>
+      <div class="col-md-10">
+        <input class="form-control" id="result" type="text" placeholder="{{ result }}"   readonly
+         >
+
+      </div>
+    </div>
+    <div class="container">
+      <div class="btn-group" role="group" >
+        <div >
+          <span><button class="btn btn-success" id="Login" [disabled]="!operationsForm.valid" (click)="makeCalculation(1)"
+            type="submit">Adicionar</button></span>
+        </div>
+        <div class="col">
+          <span><button class="btn btn-danger" id="Login" [disabled]="!operationsForm.valid" (click)="makeCalculation(2)"
+            type="submit">Subtrair</button></span>
+        </div>
+        <div >
+          <span><button class="btn btn-primary" id="Login" [disabled]="!operationsForm.valid" (click)="makeCalculation(3)"
+            type="submit">Multiplicar</button></span>
+        </div>
+        <div class="col">
+          <span><button class="btn btn-info" id="Login" [disabled]="!operationsForm.valid" (click)="makeCalculation(4)"
+            type="submit">Dividir</button></span>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
